@@ -13,8 +13,8 @@ def partition(obj, pivotIndex):
       obj[index], obj[middle] = obj[middle], obj[index]
       middle += 1
 
-  obj[middle], obj[size-1] = obj[size-1], obj[middle]
-  
+  obj[middle], obj[pivotIndex] = obj[pivotIndex], obj[middle]
+
   soma = 0
 
   for i in range(0, middle+1):

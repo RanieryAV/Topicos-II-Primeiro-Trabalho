@@ -23,26 +23,13 @@ def fractional_knapsack_linear(obj, sumOfWeights, maximumCapacity):
   return totalVal
 
 
-def partitionAndFindK(obj, ini, fim, W):
-  print("ini", ini)
-  print("fim", fim)
-  print("-----")
-  print("\n")
-  pivot = select_pivot(obj, ini, fim)
+def partitionAndFindK(obj, start, end, maximumCapacity):
+  pivot = select_pivot(obj, start, end)
   [sumW, pivot] = partition(obj, pivot)
 
-  print(pivot)
-  print(obj)
-  print(sumW)
-  print("here", W)
-  print("----")
-  print("\n")
-
-
-
-  if sumW >= W and (sumW - obj[pivot][1]) <= W:
+  if sumW >= maximumCapacity and (sumW - obj[pivot][1]) <= maximumCapacity:
     return pivot
-  elif sumW < W:
-    return partitionAndFindK(obj, pivot + 1, fim, W - sumW)
+  elif sumW < maximumCapacity:
+    return partitionAndFindK(obj, pivot + 1, end, maximumCapacity)
   
-  return partitionAndFindK(obj, ini-2, pivot - 1, W)
+  return partitionAndFindK(obj, start, pivot - 1, maximumCapacity)
