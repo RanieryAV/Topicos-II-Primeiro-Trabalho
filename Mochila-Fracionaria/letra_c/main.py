@@ -6,27 +6,53 @@ sys.path.append(path)
 
 from ler_entrada import read_files
 from gerar_graficos import individual_chart
-from time import time_ns
+import time
+import tracemalloc
 
 
 def main():
   instances = read_files()
-  times = list()
+  results = list()
+
+  # instances = [{ 'obj': [(840, 40), (600, 30), (400, 20), (100, 10), (300, 20)], 'maximumCapacity': 50 }]
 
   for input in instances.copy():
-    totalSumWeights = 0
-    obj = input['obj']
-    maximumCapacity = input['maximumCapacity']
-    
-    for index in range(len(obj)):
-      totalSumWeights += obj[index][1] 
+    start_execution = time.time()
+    times_by_execution = list()
+    memories_by_execution = list()
 
-    start_time = time_ns()
-    resultV2 = fractional_knapsack_pivot_calculation(obj, totalSumWeights, maximumCapacity)
-    print("resultV2", resultV2)
-    end_time = time_ns()
+    while(time.time() - start_execution < 5):
+      totalSumWeights = 0
+      obj = input['obj']
+      maximumCapacity = input['maximumCapacity']
+      
+      for index in range(len(obj)):
+        totalSumWeights += obj[index][1] 
+      
+      tracemalloc.start()
 
-    times.append((len(obj), end_time-start_time))
+      start_time = time.time_ns()
+      fractional_knapsack_pivot_calculation(obj, totalSumWeights, maximumCapacity)
+      end_time = time.time_ns()
 
-  individual_chart(times)
+      first_size, first_peak = tracemalloc.get_traced_memory()
+      
+      tracemalloc.reset_peak()
+
+      mem_used_mb = first_peak / (1024 * 1024) 
+      print("mem_used_mb", mem_used_mb)
+      
+      elapsed_time = end_time - start_time  #Calcula o tempo consumido em nanossegundos
+      times_by_execution.append(elapsed_time)
+      memories_by_execution.append(mem_used_mb)
+
+    results.append(
+      (
+        len(obj),
+        sum(times_by_execution)/len(times_by_execution),
+        sum(memories_by_execution)/len(memories_by_execution)
+      )
+    )
+  
+  individual_chart(results)
 main()
