@@ -12,9 +12,6 @@ def fractional_knapsack_pivot_calculation(obj, sumOfWeights, maximumCapacity):
   totalVal = 0.0
   totalW = 0
 
-  # print("v2", k)
-  # print("obj", obj)
-
   for i in range(k):
     obj[i] = (obj[i][0], obj[i][1], 1.0)
     totalVal += obj[i][0]
@@ -26,7 +23,8 @@ def fractional_knapsack_pivot_calculation(obj, sumOfWeights, maximumCapacity):
   return totalVal
 
 
-def partitionAndFindK(obj, start, end, maximumCapacity):  
+def partitionAndFindK(obj, start, end, maximumCapacity): 
+  # print("obj", obj) 
   pivot = select_pivot(obj, start, end)
   # print("v2", start, end)
   # print("calculed pivot", pivot)
