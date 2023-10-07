@@ -1,5 +1,12 @@
 caminho = "Mochila-Fracionaria/Instancias/"
+
 import os
+import sys
+
+path = "Mochila-Fracionaria/letra_a"
+sys.path.append(path)
+
+from mochila_fracionaria_nLogn import Item
 
 def carregaArquivo(arquivo):
   valores = []
@@ -42,10 +49,10 @@ def read_files():
     arr = vet[0][1:]
 
 
-    obj = list()
+    obj = []
 
     for i in range(0, int(len(arr)/2)):
-      obj.append((arr[i*2], arr[(i*2)+1]))
+      obj.append(Item(arr[i*2], arr[(i*2)+1]))
     
     result.append({ 'obj': obj, 'maximumCapacity': W })
   
