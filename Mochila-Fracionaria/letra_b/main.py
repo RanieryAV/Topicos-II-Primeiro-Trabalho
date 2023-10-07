@@ -31,19 +31,19 @@ def main():
       tracemalloc.start()
 
       start_time = time.time_ns()
-      fractional_knapsack_linear(obj, totalSumWeights, maximumCapacity)
+      result = fractional_knapsack_linear(obj, totalSumWeights, maximumCapacity)
+      print("result v1", result)
       end_time = time.time_ns()
 
-      first_size, first_peak = tracemalloc.get_traced_memory()
+      first_size, _ = tracemalloc.get_traced_memory()
       
       tracemalloc.reset_peak()
 
-      mem_used_mb = first_peak / (1024 * 1024)  # first_peak é o uso de memória em bytes
+      # mem_used_mb = first_peak / (1024 * 1024)  # first_peak é o uso de memória em bytes
 
-      print("mem_used_mb", mem_used_mb)
       elapsed_time = end_time - start_time  #Calcula o tempo consumido em nanossegundos
       times_by_execution.append(elapsed_time)
-      memories_by_execution.append(mem_used_mb)
+      memories_by_execution.append(first_size)
       
     results.append(
       (

@@ -14,14 +14,13 @@ def main():
   instances = read_files()
   results = list()
 
-  # instances = [{ 'obj': [(840, 40), (600, 30), (400, 20), (100, 10), (300, 20)], 'maximumCapacity': 50 }]
-
+ 
   for input in instances.copy():
     start_execution = time.time()
     times_by_execution = list()
     memories_by_execution = list()
 
-    while(time.time() - start_execution < 5):
+    while(time.time() - start_execution < 1):
       totalSumWeights = 0
       obj = input['obj']
       maximumCapacity = input['maximumCapacity']
@@ -32,7 +31,8 @@ def main():
       tracemalloc.start()
 
       start_time = time.time_ns()
-      fractional_knapsack_pivot_calculation(obj, totalSumWeights, maximumCapacity)
+      result = fractional_knapsack_pivot_calculation(obj, totalSumWeights, maximumCapacity)
+      print("result", result)
       end_time = time.time_ns()
 
       first_size, first_peak = tracemalloc.get_traced_memory()
@@ -40,7 +40,6 @@ def main():
       tracemalloc.reset_peak()
 
       mem_used_mb = first_peak / (1024 * 1024) 
-      print("mem_used_mb", mem_used_mb)
       
       elapsed_time = end_time - start_time  #Calcula o tempo consumido em nanossegundos
       times_by_execution.append(elapsed_time)
@@ -55,4 +54,5 @@ def main():
     )
   
   individual_chart(results)
+
 main()

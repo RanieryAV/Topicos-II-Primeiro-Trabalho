@@ -3,11 +3,11 @@
 '''
 
 import random
+tamanho = 700000
+test=10
 
-tamanho = 100
-
-for i in range(1,10):
-    file = open('{}.txt'.format(i),'w')
+for i in range(0,1):
+    file = open('{}.txt'.format(i+test),'w')
     W = random.randint(1,100)
     file.writelines(str(W) + " \n")
     for j in range(tamanho):
