@@ -1,5 +1,5 @@
-from select_pivot import select_pivot
-from partition import partition
+from select_pivot_v1 import select_pivot_v1
+from partition_v1 import partition_v1
 
 def fractional_knapsack_linear(obj, sumOfWeights, maximumCapacity):
   size=len(obj)
@@ -28,14 +28,15 @@ def fractional_knapsack_linear(obj, sumOfWeights, maximumCapacity):
 
 def partitionAndFindK(obj, start, end, maximumCapacity):
   #Selecionando pivot
-  pivot = select_pivot(obj, start, end)
+  pivot = select_pivot_v1(obj, start, end)
 
   #Colocando pivô no fim do array
   obj[end], obj[pivot] = obj[pivot], obj[end]
 
   # Particionando o array em tono deste pivô
-  [sumW, pivot] = partition(obj, start, end)
+  [sumW, pivot] = partition_v1(obj, start, end)
 
+  # Verificamos se o soma de pesos até o piso - 1 cabe na mochila por completo
   if sumW >= maximumCapacity and (sumW - obj[pivot][1]) <= maximumCapacity:
     return pivot
   elif sumW < maximumCapacity:

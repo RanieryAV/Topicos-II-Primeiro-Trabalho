@@ -4,10 +4,11 @@
 
 import random
 
-tamanho = 100
+tamanho = 1200000
+test=1
 
-for i in range(1,5):
-    file = open('Mochila-Fracionaria/Instancias/{}.txt'.format(i),'w')
+for i in range(0,1):
+    file = open('./Instancias/{}.txt'.format(i+test),'w')
     W = random.randint(500,1000)
     file.writelines(str(W) + " \n")
     for j in range(tamanho):

@@ -1,13 +1,19 @@
+from merge_sort import mergeSort
+
 def fractionalKnapsack(W, arr):
-  arr.sort(key=lambda x: (x.profit/x.weight), reverse=True)
+  mergeSort(arr)
+  # arr.sort(key=lambda x: (x[0]/x[1]), reverse=True)
+  
   finalvalue = 0.0
 
+  width=W
+
   for item in arr:
-    if item.weight <= W:
-      W -= item.weight
-      finalvalue += item.profit
+    if item[1] <= width:
+      width -= item[1]
+      finalvalue += item[0]
     else:
-      finalvalue += item.profit * W / item.weight
+      finalvalue += item[0] * width / item[1]
       break
 
   return finalvalue
