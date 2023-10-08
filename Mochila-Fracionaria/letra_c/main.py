@@ -7,7 +7,11 @@ from gerar_graficos import individual_chart
 from analisar_tempo_memoria import analyzes_time_and_memory
 
 def main():
-  results = analyzes_time_and_memory("fractional_knapsack_pivot_calculation")
+  results, table = analyzes_time_and_memory("fractional_knapsack_pivot_calculation")
+
+  print("fractional_knapsack_pivot_calculation table", table)
+  print("\n")
+
   individual_chart(results)
 
 main()

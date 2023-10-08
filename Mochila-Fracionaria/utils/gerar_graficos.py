@@ -5,7 +5,25 @@ def memory_graph(input_size, memory):
   x = input_size
   y = memory
 
-  fig = px.scatter(x=x, y=y, title=f"Uso de Memória em Função do Tamanho da Entrada", labels={'x': 'Tamanho da Entrada', 'y': 'Uso de Memória (Bytes)'})
+  fig = px.scatter(x=x, y=y, title=f"Uso de memória em função do tamanho da entrada",
+    labels={'x': 'Tamanho da Entrada', 'y': 'Uso de Memória (Bytes)'})
+
+  # Definir o tamanho da fonte do título
+  fig.update_layout(title_font=dict(size=24))
+  
+  # Definir o tamanho da fonte dos rótulos dos eixos x e y
+  fig.update_xaxes(tickfont=dict(size=18))
+  fig.update_yaxes(tickfont=dict(size=18))
+
+  # Definir o tamanho da fonte dos rótulos dos eixos x e y
+  fig.update_xaxes(title_font=dict(size=25))
+  fig.update_yaxes(title_font=dict(size=25))
+
+  # Definir a cor do marcador
+  fig.update_traces(marker=dict(color='red'))
+
+  # Definir o tamanho dos pontos
+  fig.update_traces(marker=dict(size=10)) 
 
   # Exibir o gráfico
   fig.show()
@@ -14,7 +32,27 @@ def time_graph(input_size, time):
   x = input_size
   y = time
 
-  fig = px.scatter(x=x, y=y, title=f"Tempo de execução em função do tamanho da entrada", labels={'x': 'Tamanho da Entrada', 'y': 'Tempo (ns)'})
+  fig = px.scatter(x=x, y=y, title=f"Tempo de execução em função do tamanho da entrada",
+    labels={'x': 'Tamanho da Entrada', 'y': 'Tempo (ns)'})
+  
+  # Definir o tamanho da fonte do título
+  fig.update_layout(title_font=dict(size=24))
+
+  # Definir o tamanho da fonte dos rótulos dos eixos x e y
+  fig.update_xaxes(tickfont=dict(size=18))
+  fig.update_yaxes(tickfont=dict(size=18))
+
+  # Definir o tamanho da fonte dos rótulos dos eixos x e y
+  fig.update_xaxes(title_font=dict(size=25))
+  fig.update_yaxes(title_font=dict(size=25))
+
+
+  # Definir a cor do marcador
+  fig.update_traces(marker=dict(color='blue'))
+
+  # Definir o tamanho dos pontos
+  fig.update_traces(marker=dict(size=10)) 
+
 
   # Exibir o gráfico
   fig.show()
@@ -39,4 +77,20 @@ def comparative_chart(arr):
 
   # Criar um gráfico de dispersão comparativo com Plotly Express
   fig = px.scatter(df, x='Tamanho da Entrada', y='Tempo (ns)', color='Execução', title='Comparação de tempos de execução')
+
+  # Definir o tamanho da fonte do título
+  fig.update_layout(title_font=dict(size=24))
+
+  # Definir o tamanho da fonte dos rótulos dos eixos x e y
+  fig.update_xaxes(tickfont=dict(size=18))
+  fig.update_yaxes(tickfont=dict(size=18))
+
+  # Definir o tamanho da fonte dos rótulos dos eixos x e y
+  fig.update_xaxes(title_font=dict(size=25))
+  fig.update_yaxes(title_font=dict(size=25))
+
+
+  # Definir o tamanho dos pontos
+  fig.update_traces(marker=dict(size=10)) 
+
   fig.show()

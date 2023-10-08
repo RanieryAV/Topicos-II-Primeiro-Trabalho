@@ -8,17 +8,11 @@ from analisar_tempo_memoria import analyzes_time_and_memory
 from gerar_graficos import comparative_chart
 
 def main():
-  fractionalKnapsack = analyzes_time_and_memory("fractionalKnapsack")
-  print(fractionalKnapsack)
-  print("\n")
+  fractionalKnapsack, _ = analyzes_time_and_memory("fractionalKnapsack")
   
-  fractional_knapsack_linear = analyzes_time_and_memory("fractional_knapsack_linear")
-  print(fractional_knapsack_linear)
-  print("\n")
+  fractional_knapsack_linear, _ = analyzes_time_and_memory("fractional_knapsack_linear")
 
-  fractional_knapsack_pivot_calculation = analyzes_time_and_memory("fractional_knapsack_pivot_calculation")
-  print(fractional_knapsack_pivot_calculation)
-  print("\n")
+  fractional_knapsack_pivot_calculation, _ = analyzes_time_and_memory("fractional_knapsack_pivot_calculation")
 
   comparative_chart([fractionalKnapsack, fractional_knapsack_linear, fractional_knapsack_pivot_calculation])
 

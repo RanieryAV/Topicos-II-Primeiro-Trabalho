@@ -36,6 +36,7 @@ def partitionAndFindK(obj, start, end, maximumCapacity):
   # Particionando o array em tono deste pivô
   [sumW, pivot] = partition_v1(obj, start, end)
 
+  # Verificamos se o soma de pesos até o piso - 1 cabe na mochila por completo
   if sumW >= maximumCapacity and (sumW - obj[pivot][1]) <= maximumCapacity:
     return pivot
   elif sumW < maximumCapacity:
