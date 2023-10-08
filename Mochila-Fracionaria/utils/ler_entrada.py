@@ -1,4 +1,4 @@
-caminho = "../Instancias/"
+caminho = "Mochila-Fracionaria/Instancias/"
 import os
 
 def carregaArquivo(arquivo):
