@@ -1,43 +1,42 @@
-import matplotlib.pyplot as plt
+import plotly.express as px
+import pandas as pd
 
 def memory_graph(input_size, memory):
-  # Crie o gráfico de dispersão (scatter plot) para o uso de memória
-  plt.figure(figsize=(10, 6))
-  plt.scatter(input_size, memory, marker='x', color='r', label='Uso de Memória')
+  x = input_size
+  y = memory
 
-  # Adicione rótulos aos eixos e um título
-  plt.xlabel('Tamanho da Entrada')
-  plt.ylabel('Uso de Memória (MB)')
-  plt.title('Uso de Memória em Função do Tamanho da Entrada')
+  fig = px.scatter(x=x, y=y, title=f"Uso de Memória em Função do Tamanho da Entrada", labels={'x': 'Tamanho da Entrada', 'y': 'Uso de Memória (Bytes)'})
 
-  # Adicione uma legenda
-  plt.legend()
-
-  # Exiba o gráfico
-  plt.grid(True)
-  plt.show()
+  # Exibir o gráfico
+  fig.show()
 
 def time_graph(input_size, time):
-  plt.figure(figsize=(10, 6))  # Define o tamanho da figura
-  plt.scatter(input_size, time, marker='o', color='b', label='Tempo de Execução')
+  x = input_size
+  y = time
 
-  # Adicione uma linha conectando os pontos
-  # plt.plot(tamanho_da_entrada, tempo, linestyle='-', color='r', label='Linha de Regressão')
+  fig = px.scatter(x=x, y=y, title=f"Tempo de execução em função do tamanho da entrada", labels={'x': 'Tamanho da Entrada', 'y': 'Tempo (ns)'})
 
-  # Adicione rótulos aos eixos e um título
-  plt.xlabel('Tamanho da Entrada')
-  plt.ylabel('Tempo (ns)')
-  plt.title('Tempo de Execução em Função do Tamanho da Entrada')
-
-  # Adicione uma legenda
-  plt.legend()
-
-  # Exiba o gráfico
-  plt.grid(True)
-  plt.show()
+  # Exibir o gráfico
+  fig.show()
 
 def individual_chart(obj):
   input_size, time, memory = zip(*obj)
 
   time_graph(input_size, time)
   memory_graph(input_size, memory)
+
+
+def comparative_chart(arr):
+  fisrt, second, third = arr
+
+  input_size_first, time_first, memory_first = zip(*fisrt)
+  input_size_second, time_second, memory_second = zip(*second)
+  input_size_third, time_third, memory_third = zip(*third)
+
+  df = pd.DataFrame({'Tamanho da Entrada': input_size_first + input_size_second + input_size_third,
+    'Tempo (ns)': time_first + time_second + time_third,
+    'Execução': ['O(n * log n)'] * len(input_size_first) + ['O(n) mediana das medianas'] * len(input_size_second) + ['O(n) média das razões'] * len(input_size_third)})
+
+  # Criar um gráfico de dispersão comparativo com Plotly Express
+  fig = px.scatter(df, x='Tamanho da Entrada', y='Tempo (ns)', color='Execução', title='Comparação de tempos de execução')
+  fig.show()
