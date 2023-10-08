@@ -1,5 +1,5 @@
-from select_pivot import select_pivot
-from partition import partition
+from select_pivot_v2 import select_pivot_v2
+from partition_v2 import partition_v2
 
 def fractional_knapsack_pivot_calculation(obj, sumOfWeights, maximumCapacity):
   size=len(obj)
@@ -24,8 +24,8 @@ def fractional_knapsack_pivot_calculation(obj, sumOfWeights, maximumCapacity):
 
 
 def partitionAndFindK(obj, start, end, maximumCapacity): 
-  pivot = select_pivot(obj, start, end)
-  [sumW, pivot] = partition(obj, start, pivot)
+  pivot = select_pivot_v2(obj, start, end)
+  [sumW, pivot] = partition_v2(obj, start, end, pivot)
 
   if sumW >= maximumCapacity and (sumW - obj[pivot][1]) <= maximumCapacity:
     return pivot
